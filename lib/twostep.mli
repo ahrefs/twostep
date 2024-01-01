@@ -135,7 +135,7 @@ module Internals : sig
 
   val hmac : hash:string -> secret:string -> string -> string
 
-  val base32_to_string : ?size:int -> string -> string
+  val base32_to_string : string -> string
 
   type padding = Helpers.padding
 
