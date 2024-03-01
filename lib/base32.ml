@@ -119,17 +119,20 @@ let int_to_base_x ~basis ~alphabet number =
   else enc_loop "" ~basis ~alphabet number
 
 
-let base32_to_string ?(size = 10) base32 =
-  base32
-  |> Base.String.lowercase
-  |> Base.String.to_list
-  |> Base.List.filter ~f:(( != ) ' ')
-  |> Base.List.map ~f:reverse_base32_alphabet
-  |> Base.List.map ~f:(int_to_base_x ~basis:2 ~alphabet:[ "0"; "1" ])
-  |> Base.List.map ~f:(Helpers.pad ~basis:5 ~direction:Helpers.OnLeft ~byte:'0')
-  |> Base.List.reduce_exn ~f:( ^ )
+let base32_to_string base32 =
+  let base2 =
+    base32
+    |> Base.String.lowercase
+    |> Base.String.to_list
+    |> Base.List.filter ~f:(( != ) ' ')
+    |> Base.List.map ~f:reverse_base32_alphabet
+    |> Base.List.map ~f:(int_to_base_x ~basis:2 ~alphabet:[ "0"; "1" ])
+    |> Base.List.map ~f:(Helpers.pad ~basis:5 ~direction:Helpers.OnLeft ~byte:'0')
+    |> Base.List.reduce_exn ~f:( ^ )
+  in
+  base2
   |> Z.of_string_base 2
-  |> Mirage_crypto_pk.Z_extra.to_cstruct_be ~size
+  |> Mirage_crypto_pk.Z_extra.to_cstruct_be ~size:(String.length base2 / 8)
   |> Cstruct.to_string
 
 
