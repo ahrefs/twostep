@@ -30,7 +30,7 @@ depends: [
   "base" {>= "v0.9.3"}
   "digestif" {>= "1.0.0"}
   "hex" {>= "1.2.0"}
-  "mirage-crypto" {>= "1.0.0"}
+  "mirage-crypto" {>= "1.2.0"}
   "mirage-crypto-rng"
   "mirage-crypto-pk"
   "dune" {>= "2.7.0"}
