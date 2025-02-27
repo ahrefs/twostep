@@ -132,8 +132,7 @@ let base32_to_string base32 =
   in
   base2
   |> Z.of_string_base 2
-  |> Mirage_crypto_pk.Z_extra.to_cstruct_be ~size:(String.length base2 / 8)
-  |> Cstruct.to_string
+  |> Mirage_crypto_pk.Z_extra.to_octets_be ~size:(String.length base2 / 8)
 
 
 let char_to_bits char =

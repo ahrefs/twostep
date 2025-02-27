@@ -28,8 +28,9 @@ available: [ arch != "arm32" & arch != "x86_32" ]
 depends: [
   "ocaml" {>= "4.08.0"}
   "base" {>= "v0.9.3"}
+  "digestif" {>= "1.0.0"}
   "hex" {>= "1.2.0"}
-  "mirage-crypto" {>= "0.11.0"}
+  "mirage-crypto" {>= "1.2.0"}
   "mirage-crypto-rng"
   "mirage-crypto-pk"
   "dune" {>= "2.7.0"}

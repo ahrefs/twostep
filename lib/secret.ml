@@ -2,7 +2,7 @@ let __random_bytes bytes = Mirage_crypto_rng.generate bytes
 
 let generate ~bytes () =
   if bytes >= 10 && bytes mod 5 == 0
-  then Base32.string_to_base32 @@ Cstruct.to_string @@ __random_bytes bytes
+  then Base32.string_to_base32 @@ __random_bytes bytes
   else
     failwith
       ( "Invalid amount of bytes ("
@@ -10,4 +10,4 @@ let generate ~bytes () =
       ^ ") for secret, it must be at least 10 and divisible by 5!" )
 
 
-let _ = Mirage_crypto_rng_unix.initialize (module Mirage_crypto_rng.Fortuna)
+let _ = Mirage_crypto_rng_unix.use_default ()
